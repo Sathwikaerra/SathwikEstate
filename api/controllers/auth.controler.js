@@ -44,4 +44,44 @@ export const signin=async(req,res,next)=>{
     } catch (error) {
         next(error)
     }
+
+
+
+}
+
+
+export const google=async(req,res,next)=>{
+    try {
+        const user=await User.findOne({email:req.body.email})
+        if(user){
+            const token=jwt.sign({id:user._id},process.env.JWT_SECRET);
+            const {password:pass,...rest}=user._doc;
+            res.cookie('access token',token,{httpOnly:true}).status(200).json(rest);
+                
+            
+        }
+        else{
+            // google nundi password theskole .. kani schema lo  required ani petnam andke random passwrd generst chesi tharvatha update chskoachu
+            const generatedPassword=Math.random().toString(36).slice(-8)+Math.random().toString(36).slice(-8);//slice -8 antee last characters tostrinng ante numbers 0-9 lettres a-Z
+
+            const hashpassword=bcrypt.hashSync(generatedPassword,10);
+
+            const newuser=new User({
+                username:req.body.name.split(" ").join("").toLowerCase()+Math.random().toString(36).slice(-4),
+                email:req.body.email,
+                password:hashpassword,
+                avatar:req.body.photo
+            })
+
+            await newuser.save()
+            const token=jwt.sign({id:newuser._id},process.env.JWT_SECRET);
+
+            const {password:pass,...rest}=newuser._doc;
+
+            res.cookie('access token',token,{httpOnly:true}).status(200).json(rest)
+        }
+        
+    } catch (error) {
+        next(error)
+    }
 }
