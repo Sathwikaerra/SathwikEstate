@@ -73,7 +73,7 @@ console.log(images)
       {
         images.map((url)=>(
           <SwiperSlide key={url}>
-            <div className="h-[550px]" style={{background:`url(${url}) center no-repeat  ` ,backgroundSize:'contain'}}>
+            <div className="h-[550px]" style={{background:`url(${url}) center no-repeat  ` ,backgroundSize:'cover'}}>
 
 
             </div>
@@ -86,6 +86,61 @@ console.log(images)
       }
 
      </Swiper>
+
+<div className=" flex  flex-wrap justify-center flex-col">
+<div className='flex  flex-wrap flex-1 mx-auto  mt-10'>
+      <div className='flex'>
+      <p className='text-3xl font-semibold'>{listData.name}</p>
+      <p className='text-3xl font-semibold'>-</p>
+      <p className='text-3xl text-slate-700 font-semibold'>$ {listData.regularPrice}</p>
+      </div>
+      
+     </div>
+     <div className="flex flex-wrap flex-1 gap-2  my-4 mx-auto">
+     <i className="fa-solid  fa-location-dot text-blue-700 text-xl"></i>
+     <span className='text-slate-700 font-normal text-md '>{listData.address}</span>
+
+     </div>
+
+     <div className='flex  flex-wrap text-xl mb-3 items-center justify-center'>
+      <div className=" flex  gap-4">
+        <p className='p-2 w-[100px] bg-red-700 max-w-[200px] text-center rounded-md text-white' >{listData.type}</p>
+        <p className='p-2 bg-green-700 max-w-[200px] text-center rounded-md text-white'>$ {+listData.regularPrice- +listData.discountPrice} discount</p>
+      
+
+      </div>
+     </div>
+    
+    
+
+<div className=" flex flex-wrap text-xl mb-2 items-center justify-center ">
+  <span className='text-2xl  font-semibold text-black'>Description-{' '}</span>
+  <p>{listData.description}</p>
+  
+</div>
+
+<div className=" p-3 flex   flex-wrap justify-center gap-10 text-green-700 font-semibold text-sm">
+  <p className='flex items-center gap-1 whitespace-nowrap'><i class="fa-solid fa-bed"></i>{listData.bedrooms>1 ?` ${listData.bedrooms} beds`:`${listData.bedrooms} bed`}</p>
+  <p className='flex items-center gap-1 whitespace-nowrap'><i class="fa-solid fa-bath"></i>{listData.bathrooms>1 ?` ${listData.bathrooms} baths`:`${listData.bathrooms} bath`}</p>
+
+<p className='flex items-center gap-1 whitespace-nowrap'>
+<i class="fa-solid fa-square-parking"></i>{listData.parking?"Parking":"No Parking"}
+</p>
+
+<p className='flex items-center gap-1 whitespace-nowrap'>
+<i class="fa-solid fa-couch"></i>{listData.furnished?"Furnished":"Unfurnished"}
+</p>
+  
+
+</div>
+
+
+
+
+</div>
+
+     
+
 
       
     </main>
