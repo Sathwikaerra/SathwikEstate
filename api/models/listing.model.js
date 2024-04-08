@@ -44,7 +44,7 @@ const listingSchema=mongoose.Schema({
     },
     offer:{
         type:Boolean,
-        required:true,
+        
     },
 
     imageUrls:{
