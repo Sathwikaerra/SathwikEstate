@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {getDownloadURL, getStorage,ref, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../../../firebase'
 import {useSelector} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,useParams} from 'react-router-dom'
 export default function createListing() {
+  const params=useParams();
   const navigate=useNavigate();
   const {currentUser}=useSelector(state=>state.user)
   const [files,setFiles]=useState([])
@@ -26,6 +27,23 @@ export default function createListing() {
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState(false);
 const [success,setSuccess]=useState(false);
+
+
+useEffect(()=>{
+const fetchId=async()=>{
+  const listingId=params.id;
+  const res=await fetch(`/api/listing/get/${listingId}`)
+  const data=await res.json();
+  if(data.success===false)
+  {
+    console.log(data.message)
+  }
+  setFormData(data);
+
+
+}
+fetchId();
+},[])
  
 
 
@@ -124,7 +142,7 @@ try {
   setLoading(true);
   setError(false);
 
-  const res= await fetch('/api/listing/create',{
+  const res= await fetch(`/api/listing/update/${params.id}`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
@@ -158,7 +176,7 @@ setSuccess("List Created Succesfully")
 
   return (
     <main className='p-3 max-w-4xl mx-auto'>
-     <h1 className='text-3xl font-semibold text-center my-7'>Create a Listing</h1>
+     <h1 className='text-3xl font-semibold text-center my-7'>Update a Listing</h1>
     <form onSubmit={handleSubmit} className="flex flex-col  sm:flex-row gap-4">
 
       <div className='flex flex-col gap-4 flex-1'>
@@ -244,7 +262,7 @@ setSuccess("List Created Succesfully")
            
         })
       }
-      <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-80' >{loading?"Creating...":"Create a Listing"}</button>
+      <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-80' >{loading?"Updating...":"Update a Listing"}</button>
       {error? <p className='text-red-700 text-sm text-center'>{error}</p>:""}
       {success?<p className='text-green-700 text-sm text-center'>{success}</p>:""}
      </div>
