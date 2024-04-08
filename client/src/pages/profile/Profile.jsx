@@ -6,6 +6,7 @@ import { app } from '../../../firebase'
 import {updateUserStart,updateUserSuccess,logoutUserFailure,logoutUserSuccess,logoutUserStart,updateUserFailure,deleteUserFailure,deleteUserStart,deleteUserSuccess } from '../../redux/userSlice'
 import {useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
+import { space } from 'postcss/lib/list'
 
 export default function Profile() {
   const dispatch=useDispatch()
@@ -18,6 +19,10 @@ export default function Profile() {
 const[showListingError,setShowListingsErrors]=useState(false)
 const [Showloading,setShowLoading]=useState(false)
 const [userListings,setuserListings]=useState([])
+
+const [deleteError,setDeleteError]=useState(false);
+const [delteSuccesss,setDeleteSuccess]=useState(false)
+
 
 
 
@@ -160,6 +165,27 @@ try {
 
   }
 
+  const handleListingdelete=async(listingId)=>{
+    try {
+      const res=await fetch(`/api/listing/delete/${listingId}`,{
+        method:"DELETE",
+      })
+      const data=await res.json();
+
+
+      if(data.success===false)
+      {
+        setDeleteError(true)
+        return
+      }
+      setuserListings((prev)=>prev.filter((listing)=>listing._id!==listingId))
+      setDeleteSuccess(true)
+    } catch (error) {
+      setDeleteError(true)
+    }
+
+  }
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
     <h1 className='text-3xl text-center font-semibold my-7'>Profile</h1>
@@ -213,7 +239,11 @@ try {
 
       </Link>
       <div className="flex flex-col items-center gap-2">
-        <button className='text-red-700 uppercase'>Delete</button>
+        <button onClick={()=>handleListingdelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
+        
+         <span className='text-red-700'> {deleteError?"Error in deleting ":""} </span>
+         <span className='text-green-700'> {delteSuccesss?"Succesfully deleted ":""} </span>
+        
         <button className='text-green-700 uppercase'>Edit</button>
       </div>
 
