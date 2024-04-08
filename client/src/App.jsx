@@ -7,7 +7,7 @@ import Signin from './pages/signin/Signin'
 import Signout from './pages/signout/Signout'
 import Header from './components/Header/Header'
 import Privateroute from './components/Header/privateroute'
-
+import CreateListing from './pages/createListing/createListing'
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
     <Route path='/about' element={<About/>}/>
     <Route element={<Privateroute/>}>
     <Route path='/profile' element={<Profile/>}/>
-
+    <Route path='/create-listing' element={<CreateListing/>}/>
     </Route>
 
    
