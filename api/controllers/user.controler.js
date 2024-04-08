@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcrypt from 'bcrypt'
+import Listing from "../models/listing.model.js";
 
 
 export const test=(req,res)=>{
@@ -20,7 +21,7 @@ export const updateUser=async(req,res,next)=>{
 
     }
 
-    const updatedUser= await User.findByIdAndUpdate(req.params.id,{
+    const updatedUser= await Listing.findByIdAndUpdate(req.params.id,{
       $set:{
         username:req.body.username,
         email:req.body.email,
@@ -52,4 +53,21 @@ export const deleteUser=async(req,res,next)=>{
     
   }
 
+}
+
+export const showListings=async(req,res,next)=>{
+  if(req.user.id===req.params.id)
+  {
+    try {
+      const listing=await Listing.find({useRef:req.params.id})
+      res.status(200).json(listing)
+    } catch (error) {
+      next(error)
+    }
+  }
+  else
+  {
+    next(errorHandler(401,"you can only view your own listings"))
+
+  }
 }
