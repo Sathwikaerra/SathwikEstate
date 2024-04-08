@@ -243,8 +243,10 @@ try {
         
          <span className='text-red-700'> {deleteError?"Error in deleting ":""} </span>
          <span className='text-green-700'> {delteSuccesss?"Succesfully deleted ":""} </span>
-        
+        <Link>
         <button className='text-green-700 uppercase'>Edit</button>
+        </Link>
+       
       </div>
 
       </div>
