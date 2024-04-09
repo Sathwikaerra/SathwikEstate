@@ -4,9 +4,14 @@ import {Swiper ,SwiperSlide} from 'swiper/react'
 import SwiperCore from 'swiper';
 import {Navigation} from 'swiper/modules'
 import 'swiper/css/bundle'
+import {useSelector} from 'react-redux'
+import Contact from '../../components/Contact';
 
 
 export default function listing() {
+
+  const {currentUser}=useSelector(state=>state.user)
+  
 
   SwiperCore.use([Navigation]);
   
@@ -15,7 +20,10 @@ export default function listing() {
   const [loading,setLoading]=useState(false)
   const[error,setError]=useState(false)
   const [images,setImages]=useState([])
+  const [contact,setContact]=useState(false)
 
+
+  console.log(currentUser,listData.useRef)
 
 
 
@@ -56,10 +64,10 @@ setLoading(false)
 
   }
   fetchId();
-},[])
+},[params.id])
 
 
-console.log(images)
+
 
 
 
@@ -73,7 +81,7 @@ console.log(images)
       {
         images.map((url)=>(
           <SwiperSlide key={url}>
-            <div className="h-[550px]" style={{background:`url(${url}) center no-repeat  ` ,backgroundSize:'cover'}}>
+            <div className="h-[550px]" style={{background:`url(${url}) center no-repeat  ` ,backgroundSize:'cover' }}>
 
 
             </div>
@@ -124,13 +132,24 @@ console.log(images)
   <p className='flex items-center gap-1 whitespace-nowrap'><i class="fa-solid fa-bath"></i>{listData.bathrooms>1 ?` ${listData.bathrooms} baths`:`${listData.bathrooms} bath`}</p>
 
 <p className='flex items-center gap-1 whitespace-nowrap'>
-<i class="fa-solid fa-square-parking"></i>{listData.parking?"Parking":"No Parking"}
+<i className="fa-solid fa-square-parking"></i>{listData.parking?"Parking":"No Parking"}
 </p>
 
 <p className='flex items-center gap-1 whitespace-nowrap'>
-<i class="fa-solid fa-couch"></i>{listData.furnished?"Furnished":"Unfurnished"}
+<i className="fa-solid fa-couch"></i>{listData.furnished?"Furnished":"Unfurnished"}
 </p>
   
+
+</div>
+<div className='flex flex-1 mt-4 justify-center items-center  '>
+  {
+
+    currentUser&& !contact && currentUser._id!==listData.useRef ?'':(<button hidden={contact} onClick={()=>setContact(true)} className='rounded-lg  w-[200px] sm:w-[500px]  bg-slate-700 text-white p-3 uppercase hover:opacity-90'>Contact owner</button>)
+
+  }
+  {
+    contact && <Contact listData={listData}/>
+  }
 
 </div>
 
