@@ -125,7 +125,7 @@ try {
             name:{$regex : searchTerm, $options :'i'},
             offer,
             furnished,parking,type
-        }).sort({[sort]:order}).limit(limit).skip(startIndex);
+        }).sort(order).limit(limit).skip(startIndex);
 
 
         return res.status(200).json(listings);

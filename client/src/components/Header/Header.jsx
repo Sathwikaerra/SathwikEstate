@@ -10,9 +10,10 @@ export default function Header() {
     const navigate=useNavigate()
     const {currentUser}=useSelector(state=>state.user)
   const [searchTerm,setSearchTerm]=useState('')
+
+ 
     
 const  handleSubmit=(e)=>{
-    console.log(searchTerm)
     e.preventDefault();
     const urlParams=new URLSearchParams(window.location.search);
 
@@ -44,7 +45,7 @@ useEffect(()=>{
         <span className='text-slate-700'>Estate</span>
     </h1>
     <form  onSubmit={handleSubmit} className='bg-slate-100 rounded-lg p-2 flex items-center'>
-        <input  value={ searchTerm}onChange={(e)=>setSearchTerm(e.target.value)}  type="text" placeholder='search...' className='bg-transparent focus:outline-none w-24 sm:w-64 ' />
+        <input  value={searchTerm}onChange={(e)=>setSearchTerm(e.target.value)}  type="text" placeholder='search...' className='bg-transparent focus:outline-none w-24 sm:w-64 ' />
        
        
        <button>        <FaSearch className='text-slate-600' />
