@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import ListingItem from '../listingitem/listingitem';
 
 export default function search() {
     const navigate=useNavigate()
@@ -63,7 +64,7 @@ export default function search() {
                 const res=await fetch(`/api/listing/get?${searchQuery}`)
 
                 const data=await res.json();
-                console.log(data)
+               
                 setListings(data);
                 setLoading(false)
                 } catch (error) {
@@ -204,9 +205,24 @@ const handleSubmit=(e)=>{
         </form>
 
       </div>
-      <div className="flex ">
+      <div className="flex-1 ">
 <h1 className='text-3xl font-semibold border-b p-3 mt-5 text-slate-700'>Listing results:</h1>
-<div className="">
+<div className="p-7 flex flex-wrap gap-4">
+
+    {
+        !loading && listings.length===0  && (
+            <p className='text-xl text-slate-700'>No listing found</p>
+        )
+    }
+    {
+        loading && ( <p className='text-xl text-slate-700 text-center w-full'>
+            Loading...
+        </p>)
+
+    }
+    {
+        !loading && listings.map((i)=><ListingItem key={i._id} listing={i}/>)
+    }
    
    
  

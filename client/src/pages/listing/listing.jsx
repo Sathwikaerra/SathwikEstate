@@ -113,7 +113,7 @@ setLoading(false)
      <div className='flex  flex-wrap text-xl mb-3 items-center justify-center'>
       <div className=" flex  gap-4">
         <p className='p-2 w-[100px] bg-red-700 max-w-[200px] text-center rounded-md text-white' >{listData.type}</p>
-        <p className='p-2 bg-green-700 max-w-[200px] text-center rounded-md text-white'>$ {+listData.regularPrice- +listData.discountPrice} discount</p>
+        <p className='p-2 bg-green-700 max-w-[200px] text-center rounded-md text-white'>$ {+listData.regularPrice- +listData.discountPrice} OFF</p>
       
 
       </div>
