@@ -7,7 +7,8 @@ export default function search() {
     const [loading,setLoading]=useState(false);
     const [listings,setListings]=useState([]);
 
-    console.log(listings)
+
+   
 
         const [sidebardata,setSideBarData]=useState({
             searchTerm:'',
@@ -50,17 +51,27 @@ export default function search() {
             }
 
             const fetchListings=async()=>{
-                setLoading(true)
+
+                try {
+                    
+                    setLoading(true)
                 const searchQuery=urlParams.toString();
 
-                console.log(searchQuery)
+                
                 
 
                 const res=await fetch(`/api/listing/get?${searchQuery}`)
 
                 const data=await res.json();
+                console.log(data)
                 setListings(data);
                 setLoading(false)
+                } catch (error) {
+                    next(error)
+                    setLoading(false)
+                    
+                }
+                
 
 
 
@@ -195,6 +206,13 @@ const handleSubmit=(e)=>{
       </div>
       <div className="flex ">
 <h1 className='text-3xl font-semibold border-b p-3 mt-5 text-slate-700'>Listing results:</h1>
+<div className="">
+   
+   
+ 
+
+
+</div>
       </div>
     </div>
   )
