@@ -18,7 +18,7 @@ const  handleSubmit=(e)=>{
 
     urlParams.set('searchTerm',searchTerm);
     const searchQuery=urlParams.toString();
-    navigate(`/search/${searchQuery}`)
+    navigate(`/search?${searchQuery}`)
 
 
 
