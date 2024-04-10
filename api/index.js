@@ -32,7 +32,6 @@ app.use('/api/listing',listingRouter)
 app.use(express.static(path.join(__dirname,'/client/dit')));
 
 app.get('*',(req,res)=>{
-    res.set('Content-Type', 'application/javascript');
 
     res.sendFile(path.join(__dirname,'client','dist','index.html'));
 
