@@ -29,7 +29,7 @@ app.use('/api/user',userrouter)
 app.use('/api/auth',authrouter)
 app.use('/api/listing',listingRouter)
 
-app.use('/statitc',express.static(path.join(__dirname,'/client/dit')));
+app.use(express.static(path.join(__dirname,'/client/dist')));
 
 app.get('*',(req,res)=>{
 
