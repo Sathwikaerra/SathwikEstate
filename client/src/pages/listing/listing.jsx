@@ -22,8 +22,9 @@ export default function listing() {
   const [images,setImages]=useState([])
   const [contact,setContact]=useState(false)
 
+  console.log(images)
 
-  console.log(currentUser,listData.useRef)
+
 
 
 
@@ -72,6 +73,7 @@ setLoading(false)
 
 
 
+
   return (
     <main>
       {loading && <p  className='text-center my-7 text-2xl'>loading...</p>}
@@ -81,7 +83,8 @@ setLoading(false)
       {
         images.map((url)=>(
           <SwiperSlide key={url}>
-            <div className="h-[550px]" style={{background:`url(${url}) center no-repeat  ` ,backgroundSize:'cover' }}>
+            
+            <div className="h-[550px]" style={{background:`url('${url}') center no-repeat  ` ,backgroundSize:'contain' }}>
 
 
             </div>

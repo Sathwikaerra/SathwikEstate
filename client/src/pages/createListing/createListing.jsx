@@ -246,7 +246,7 @@ setSuccess("List Created Succesfully")
       </div>
       {
             fileUploadError? <span className='text-red-700'>Error in Image Upload</span>:
-           filePercent>0 && filePercent<100 ?<span className='text-slate-700'>{`Uploading ${filePercent}%`}</span>:
+           filePercent>0 && filePercent<100 ?<span className='text-slate-700'>{`Uploading${filePercent}%`}</span>:
             filePercent ===100 ?<span className='text-green-700'>Successfully Uploaded</span>:""
     
           }
