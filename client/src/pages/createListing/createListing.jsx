@@ -7,7 +7,10 @@ export default function createListing() {
   const navigate=useNavigate();
   const {currentUser}=useSelector(state=>state.user)
   const [files,setFiles]=useState([])
-  const [formData,setFormData]=useState({
+  const[fileUploadError,setFileUploadError]=useState(false)
+  const [filePercent,setFilePercent]=useState(0);
+
+    const [formData,setFormData]=useState({
     imageUrls:[],
     name:"",
     description:"",
@@ -21,6 +24,8 @@ export default function createListing() {
     furnished:false,
 
   })
+
+
   const [imageUploadError,setImageUplaodError]=useState(false)
   const [uploading,setUploading]=useState(false);
   const [loading,setLoading]=useState(false);
@@ -72,10 +77,10 @@ const [success,setSuccess]=useState(false);
       uploadTask.on("state_changed",
       (snapshot)=>{
         const progress=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-        console.log(`upload is ${progress}% done`)
+        setFilePercent(Math.round(progress));
       },
      (error)=>{
-      reject(error);
+      setFileUploadError('error in image uploading')
      },
      ()=>{
       getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
@@ -119,7 +124,6 @@ const handleSubmit=async(e)=>{
 e.preventDefault();
 try {
   if(formData.imageUrls.length<1) return setError("you must upload atleast one image")
-  if(formData.regularPrice<formData.discountPrice) return setError("discount price must be lower than regular price")
   
   setLoading(true);
   setError(false);
@@ -162,7 +166,7 @@ setSuccess("List Created Succesfully")
     <form onSubmit={handleSubmit} className="flex flex-col  sm:flex-row gap-4">
 
       <div className='flex flex-col gap-4 flex-1'>
-      <input onChange={handleChange} type="text" placeholder='name' className='border p-3 rounded-lg ' id='name' value={formData.name} maxLength='62' minLength='10' required/>
+      <input onChange={handleChange} type="text" placeholder='name' className='border p-3 rounded-lg ' id='name' value={formData.name} maxLength='62' minLength='3' required/>
       <textarea onChange={handleChange}  value={formData.description} type="text" placeholder='description' className='border p-3 rounded-lg ' id='description'  required/>
       <input type="text" onChange={handleChange} value={formData.address} placeholder='address' className='border p-3 rounded-lg ' id='address'  required/>
 
@@ -208,14 +212,14 @@ setSuccess("List Created Succesfully")
           </div>
           
         </div>
-        {formData.offer && <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <input className='p-3 border w-14 sm:w-24  border-gray-300 rounded-lg ' type="number"  id="discountPrice" onChange={handleChange} value={formData.discountPrice} minLength='50' maxLength='10000000' required />
           <div className="flex flex-col items-center">
           <span>Discount price</span>
           <span className='text-xs'>($ / month)</span>
 
           </div>
-          </div>}
+          </div>
         
        
       </div>
@@ -230,8 +234,22 @@ setSuccess("List Created Succesfully")
 
       <div className=' flex gap-4'>
         <input onChange={(e)=>setFiles(e.target.files)} className='p-3 border border-gray-300 rounded w-full ' type="file"  id="images"  accept='image/*' multiple/>
-        <button onClick={handleImageSubmit} type='button' className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80' >{uploading ?"Uploading...":"Uplaod"}</button>
+        <button onClick={handleImageSubmit} type='button' className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80' >
+          {uploading ?`${filePercent}% uploaded`:"Uplaod"
+
+
+
+        }</button>
+
+          
+        
       </div>
+      {
+            fileUploadError? <span className='text-red-700'>Error in Image Upload</span>:
+           filePercent>0 && filePercent<100 ?<span className='text-slate-700'>{`Uploading ${filePercent}%`}</span>:
+            filePercent ===100 ?<span className='text-green-700'>Successfully Uploaded</span>:""
+    
+          }
 
       <p className='text-red-700 text-center'>{imageUploadError && imageUploadError}</p>
       {
