@@ -44,16 +44,16 @@ useEffect(()=>{
         <span className='text-slate-500 '>sathwik</span>
         <span className='text-slate-700'>Estate</span>
     </h1>
-    <form  onSubmit={handleSubmit} className='bg-slate-100 rounded-lg p-2 flex items-center'>
-        <input  value={searchTerm}onChange={(e)=>setSearchTerm(e.target.value)}  type="text" placeholder='search...' className='bg-transparent focus:outline-none text-xs sm:text-xs w-14 sm:w-64 ' />
+    <form  onSubmit={handleSubmit} className='bg-slate-100 rounded-lg p-2 flex gap-4 items-center'>
+        <input  value={searchTerm}onChange={(e)=>setSearchTerm(e.target.value)}  type="text" placeholder='search...' className='bg-transparent focus:outline-none text-orange-950 text-xs sm:text-xs w-11 sm:w-64 ' />
        
        
-       <button>        <FaSearch className='text-slate-600' />
+       <button className='text-s'>        <FaSearch className='text-slate-600 ' />
 </button>
        
     </form>
 
-    <ul className='flex gap-4'>
+    <ul className='flex justify-center items-center gap-4'>
         <Link to='/'>
         <li className='text-xs sm:inline sm:text-xl text-slate-700 hover:text-blue-700'>Home</li>
        </Link>

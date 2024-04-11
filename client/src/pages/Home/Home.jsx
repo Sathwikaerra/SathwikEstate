@@ -5,6 +5,7 @@ import {Swiper ,SwiperSlide} from 'swiper/react'
 import {Navigation} from 'swiper/modules'
 import SwiperCore from 'swiper'
 import  'swiper/css/bundle'
+import './style.css'
 
 
 
@@ -95,21 +96,21 @@ useEffect(()=>{
 
 
   return (
-    <div>
+    <div className='home flex flex-col'>
       {/* //top */}
 
-      <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
-        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
-          Find your next <span className='text-slate-500'>Perfect</span>
-          <br />place with ease
+      <div className=" title flex flex-col gap-6 pt-14 pb-2  sm:p-28  px-3 max-w-6xl  mx-auto">
+        <h1 className='text-blue-900 font-bold text-3xl lg:text-6xl'>
+        The legal right to own a <span className='text-black'>land</span>   <span className='text-slate-500 ml-2'>or</span>
+          <br /><span className='text-black'>property</span> 
         </h1>
-        <div className="text-gray-400 text-xs sm:text-sm">
+        <div className="text-black text-xs sm:text-lg">
           sathwik Estate is the best place to  find your next perfect place  to live.
           <br />
           we have a wide range of properties for you to choose from.
 
         </div>
-        <Link className='text-xs sm:text-sm text-blue-800 font-bold hover:underline ' to={'/search'}>
+        <Link className='text-xs bg-violet-400  p-2 w-[130px] sm:text-sm text-black font-bold hover:underline ' to={'/search'}>
           Let's get started...
 
         </Link>
@@ -117,13 +118,15 @@ useEffect(()=>{
       </div>
 
       {/* //slide */}
+      
+      <div className=''>
 
-      <Swiper navigation>
+      <Swiper  className='' navigation>
         {
           offerListings && offerListings.length>0 && offerListings.map((i,index)=>(
             
               <SwiperSlide>
-              <div className="h-[500px]" style={{background:`url(${i.imageUrls[0]}) center no-repeat`, backgroundSize:'cover'}} key={index} ></div>
+              <div className=" slider h-[500px]" style={{background:`url(${i.imageUrls[0]}) center no-repeat`, backgroundSize:'contain'}} key={index} ></div>
             </SwiperSlide>
 
             
@@ -135,6 +138,7 @@ useEffect(()=>{
 
 
         </Swiper>
+        </div>
 
 
       {/* //listings for  offer sales and rent */}
@@ -143,11 +147,11 @@ useEffect(()=>{
           offerListings && offerListings.length >0 && (
             <div className="">
               <div className='my-3'>
-                <h2 className='text-slate-600 font-semibold text-2xl'>Recent Offers</h2>
-                <Link className='text-sm text-blue-800 hover:underline ' to={'/search?offer=true'}>Show more offers</Link>
+                <h2 className='text-black text-center font-semibold text-2xl'>Recent Offers</h2>
+               <h1 className='text-center'> <Link className='text-sm text-blue-800 font-semibold text-center  hover:underline ' to={'/search?offer=true'}>Show more offers</Link></h1>
 
               </div>
-              <div className="flex flex-wrap gap-4 ">
+              <div className=" grid gap-4 grid-cols-3 sm:flex sm:flex-wrap sm:gap-4 sm:justify-center  sm:items-center  ">
                 { 
                   offerListings.map((i)=><ListingItem key={i._id} listing={i}/>)
                 }
@@ -160,11 +164,11 @@ useEffect(()=>{
           rentListings && rentListings.length >0 && (
             <div className="">
               <div className='my-3'>
-                <h2 className='text-slate-600 font-semibold text-2xl'>Recent places for rent</h2>
-                <Link className='text-sm text-blue-800 hover:underline ' to={'/search?type=rent'}>Show more places for rent</Link>
+                <h2 className='text-black  text-center font-semibold text-2xl'>Recent places for rent</h2>
+                <h1 className='text-center'> <Link className='text-sm text-blue-800 font-semibold hover:underline ' to={'/search?type=rent'}>Show more places for rent</Link></h1>
 
               </div>
-              <div className="flex flex-wrap gap-4 ">
+              <div className="grid gap-4 grid-cols-3 sm:flex sm:flex-wrap sm:gap-4 sm:justify-center  sm:items-center ">
                 { 
                   rentListings.map((i)=><ListingItem key={i._id} listing={i}/>)
                 }
@@ -177,11 +181,11 @@ useEffect(()=>{
           saleListings && saleListings.length >0 && (
             <div className="">
               <div className='my-3'>
-                <h2 className='text-slate-600 font-semibold text-2xl'>Recent places for sale</h2>
-                <Link className='text-sm text-blue-800 hover:underline ' to={'/search?type=sale'}>Show more places for sale</Link>
-
+                <h2 className='text-black text-center font-semibold text-2xl'>Recent places for sale</h2>
+               <h1 className='text-center'> <Link className='text-sm text-blue-800 font-semibold hover:underline ' to={'/search?type=sale'}>Show more places for sale</Link>
+               </h1>
               </div>
-              <div className="flex flex-wrap gap-4 ">
+              <div className="grid gap-4 grid-cols-3 sm:flex sm:flex-wrap sm:gap-4 sm:justify-center  sm:items-center ">
                 { 
                   saleListings.map((i)=><ListingItem key={i._id} listing={i}/>)
                 }

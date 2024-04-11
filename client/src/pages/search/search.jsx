@@ -236,7 +236,7 @@ const showMoreClick=async()=>{
 
             </div>
 
-            <button className='bg-slate-700 text-white p-3 uppercase hover:opacity-90'>Search</button>
+            <button className='bg-slate-700 text-white p-2 text-xs  sm:text-xm sm:p-3 uppercase hover:opacity-90'>Search</button>
 
 
 
@@ -246,12 +246,12 @@ const showMoreClick=async()=>{
 
       </div>
       <div className="flex-1 ">
-<h1 className='text-3xl font-semibold border-b p-3 mt-5 text-slate-700'>Listing results:</h1>
-<div className="p-7 flex flex-wrap gap-4">
+<h1 className='text-2xl sm:text-3xl  text-center font-semibold border-b p-3 mt-5 text-slate-700'>Listing results:</h1>
+<div className=" p-3 grid gap-4    grid-cols-3  sm:p-7 sm:flex  sm:justify-center sm:items-center sm:flex-wrap sm:gap-4">
 
     {
         !loading && listings.length===0  && (
-            <p className='text-xl text-slate-700'>No listing found</p>
+            <p className='text-xm  sm:text-xl  text-slate-700'>No listing found</p>
         )
     }
     {
@@ -266,7 +266,7 @@ const showMoreClick=async()=>{
 
     {
         showMore && (
-            <button className='text-green-700 hover:underline p-7 text-center w-full ' onClick={showMoreClick}>Show More</button>
+            <button className='text-green-700 font-semibold hover:underline p-7 text-center w-full ' onClick={showMoreClick}>Show More</button>
         )
     }
    
