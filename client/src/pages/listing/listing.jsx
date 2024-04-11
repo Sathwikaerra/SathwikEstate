@@ -22,7 +22,7 @@ export default function listing() {
   const [images,setImages]=useState([])
   const [contact,setContact]=useState(false)
 
-  console.log(images)
+
 
 
 
@@ -147,7 +147,7 @@ setLoading(false)
 <div className='flex flex-1 mt-4 justify-center items-center  '>
   {
 
-    currentUser&& !contact && currentUser._id!==listData.useRef ?'':(<button hidden={contact} onClick={()=>setContact(true)} className='rounded-lg  w-[200px] sm:w-[500px]  bg-slate-700 text-white p-3 uppercase hover:opacity-90'>Contact owner</button>)
+    currentUser&& !contact && currentUser._id!==listData.useRef ?(<button hidden={contact} onClick={()=>setContact(true)} className='rounded-lg  w-[200px] sm:w-[500px]  bg-slate-700 text-white p-3 uppercase hover:opacity-90'>Contact owner</button>):' '
 
   }
   {

@@ -47,7 +47,7 @@ const Onchane=(e)=>{
             <textarea className='w-full border border-gray-300 rounded-md p-2 mt-2' placeholder='enter your message here...' name="messsgae" id="message"  rows="3" onChange={Onchane} value={message}/>
 
 
-            <Link className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-90' to={`mailto:${landlord.email}?subject=regarding${listData.name}&body=${message}`}>Send Message</Link>
+            <Link className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-90' to={`mailto:${landlord.email}?subject=regarding ${listData.name}&body=${message}`}>Send Message</Link>
 
         </div>)
     }
