@@ -21,7 +21,7 @@ export const updateUser=async(req,res,next)=>{
 
     }
 
-    const updatedUser= await Listing.findByIdAndUpdate(req.params.id,{
+    const updatedUser= await User.findByIdAndUpdate(req.params.id,{
       $set:{
         username:req.body.username,
         email:req.body.email,
@@ -29,8 +29,10 @@ export const updateUser=async(req,res,next)=>{
         avatar:req.body.avatar,
       }
     },{new:true})
+    
 
     const {password:pass,...rest}=updatedUser._doc;
+    
     
     res.status(200).json(rest);
   } catch (error) {
