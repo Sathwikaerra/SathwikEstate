@@ -3,6 +3,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import { signInFailure, signInStart, signInSuccess } from '../../redux/userSlice'
 import Oauth from '../../components/Header/Oauth';
+import '../Home/style.css'
 
 export default function Signin() {
 
@@ -53,7 +54,10 @@ try {
   
   
   return (
-    <div className='p-3 max-w-lg mx-auto'>
+    <div className='signin pt-8 sm:pt-5 '>
+
+   
+    <div className=' loginform  p-4 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
       <form  onSubmit={SubmitHandler}  className='flex flex-col gap-4 '>
         <input type="email" placeholder='email' className='border p-3 rounded-lg ' id='email'  onChange={handleChange}/>
@@ -64,10 +68,11 @@ try {
       <div className='flex gap-2 mt-5'>
         <p> Don't have an Account?</p>
         <Link to={'/sign-out'}>
-          <span className='text-blue-700'>Sign Up</span>
+          <span className='text-black font-semibold hover:text-blue-700 '>Sign Up</span>
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5 '>{error}</p>}
+    </div>
     </div>
   )
 }

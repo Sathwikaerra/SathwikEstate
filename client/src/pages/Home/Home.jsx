@@ -110,7 +110,7 @@ useEffect(()=>{
           we have a wide range of properties for you to choose from.
 
         </div>
-        <Link className='text-xs bg-violet-400  p-2 w-[130px] sm:text-sm text-black font-bold hover:underline ' to={'/search'}>
+        <Link className='text-xs sm:text-xl p-2  text-black font-bold hover:underline ' to={'/search'}>
           Let's get started...
 
         </Link>
