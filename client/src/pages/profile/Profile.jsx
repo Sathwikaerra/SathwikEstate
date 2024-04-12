@@ -242,7 +242,7 @@ try {
 
       </Link>
       <div className="flex flex-col items-center gap-2">
-        <button onClick={()=>handleListingdelete(listing._id)} className='bg-green-700 p-2 rounded-lg uppercase'>Delete</button>
+        <button onClick={()=>handleListingdelete(listing._id)} className='bg-red-700 p-2 rounded-lg uppercase'>Delete</button>
         
          <span className='text-red-700'> {deleteError?"Error in deleting ":""} </span>
          <span className='text-green-700'> {delteSuccesss?"Succesfully deleted ":""} </span>

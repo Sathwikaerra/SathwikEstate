@@ -41,7 +41,7 @@ useEffect(()=>{
 
   return (
    <header className='header  shadow-md'>
-    <div className='flex items-center justify-between p-3 mx-auto max-w-6xl'>
+    <div className='flex items-center justify-between p-3 gap-4 mx-auto max-w-6xl'>
     <h1 className='text-sm sm:text-xl  font-bold flex flex-wrap'>
         <span className='text-white '>sathwik</span>
         <span className='text-amber-600'>Estate</span>
@@ -55,13 +55,13 @@ useEffect(()=>{
        
     </form>
 
-    <ul className='flex justify-center items-center gap-4  sm:gap-8'>
+    <ul className='flex justify-center items-center gap-3  sm:gap-8'>
         <Link to='/'>
         <li className='text-xs sm:inline sm:text-xl border border-yellow-400 rounded-lg p-1  text-white hover:bg-white hover:text-black'>Home</li>
        </Link>
        <Link to='/about'>
         
-        <li className='text-xs sm:inline sm:text-xl border border-yellow-400 rounded-lg p-1  text-white hover:bg-white hover:text-black'>About</li>
+        <li className='text-xs sm:inline sm:text-xl border border-yellow-400 rounded-lg p-1  text-white hover:bg-white hidden sm:visible hover:text-black'>About</li>
         </Link>
 
        <Link to='/profile'>
