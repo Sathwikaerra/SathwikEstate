@@ -3,6 +3,9 @@ import {getDownloadURL, getStorage,ref, uploadBytesResumable} from 'firebase/sto
 import { app } from '../../../firebase'
 import {useSelector} from 'react-redux'
 import {useNavigate,useParams} from 'react-router-dom'
+import  '../Home/style.css'
+
+
 export default function createListing() {
   const params=useParams();
   const navigate=useNavigate();
@@ -176,7 +179,10 @@ setSuccess("List Created Succesfully")
 
 
   return (
-    <main className='p-3 max-w-4xl mx-auto'>
+    <div className='createmain p-3'>
+
+  
+    <main className='createlist rounded-lg pt-5 p-3 max-w-4xl mx-auto'>
      <h1 className='text-3xl font-semibold text-center my-7'>Update a Listing</h1>
     <form onSubmit={handleSubmit} className="flex flex-col  sm:flex-row gap-4">
 
@@ -277,5 +283,6 @@ setSuccess("List Created Succesfully")
     </form>
     
     </main>
+    </div>
   )
 }
