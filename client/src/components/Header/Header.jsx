@@ -43,9 +43,10 @@ useEffect(()=>{
    <header className='header  shadow-md'>
     <div className='flex items-center justify-between p-3 gap-4 mx-auto max-w-6xl'>
     <h1 className='text-sm sm:text-xl  font-bold flex flex-wrap'>
-        <span className='text-white '>sathwik</span>
+       <Link to={'/about'}>
+       <span className='text-white '>sathwik</span>
         <span className='text-amber-600'>Estate</span>
-    </h1>
+    </Link> </h1>
     <form  onSubmit={handleSubmit} className='bg-slate-100 rounded-lg p-2 flex gap-4 items-center'>
         <input  value={searchTerm}onChange={(e)=>setSearchTerm(e.target.value)}  type="text" placeholder='search...' className='bg-transparent focus:outline-none text-orange-950 text-xs sm:text-xm w-11 sm:w-[390px] ' />
        

@@ -3,6 +3,9 @@ import {getDownloadURL, getStorage,ref, uploadBytesResumable} from 'firebase/sto
 import { app } from '../../../firebase'
 import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import '../Home/style.css'
+
+
 export default function createListing() {
   const navigate=useNavigate();
   const {currentUser}=useSelector(state=>state.user)
@@ -161,7 +164,10 @@ setSuccess("List Created Succesfully")
 
 
   return (
-    <main className='p-3 max-w-4xl mx-auto'>
+    <div className='createmain p-3 '>
+
+    
+    <main className='createlist pt-5 rounded-lg p-3 max-w-4xl mx-auto'>
      <h1 className='text-3xl font-semibold text-center my-7'>Create a Listing</h1>
     <form onSubmit={handleSubmit} className="flex flex-col  sm:flex-row gap-4">
 
@@ -234,7 +240,7 @@ setSuccess("List Created Succesfully")
 
       <div className=' flex gap-4'>
         <input onChange={(e)=>setFiles(e.target.files)} className='p-3 border border-gray-300 rounded w-full ' type="file"  id="images"  accept='image/*' multiple/>
-        <button onClick={handleImageSubmit} type='button' className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80' >
+        <button onClick={handleImageSubmit} type='button' className='p-3 text-white hover:bg-blue-950 bg-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80' >
           {uploading ?`${filePercent}% uploaded`:"Uplaod"
 
 
@@ -275,5 +281,6 @@ setSuccess("List Created Succesfully")
     </form>
     
     </main>
+    </div>
   )
 }
