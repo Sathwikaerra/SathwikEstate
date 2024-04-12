@@ -29,7 +29,7 @@ useEffect(()=>{
   const fetchofferlistings=async()=>{
     try {
       
-       const res=await fetch(`/api/listing/get?offer=true&limit=4`);
+       const res=await fetch(`/api/listing/get?offer=true&limit=6`);
        const data=await res.json()
 
         setOfferListings(data)
@@ -51,7 +51,7 @@ useEffect(()=>{
   const fetchrentlistings=async()=>{
     try {
       
-       const res=await fetch(`/api/listing/get?type=rent&limit=4`);
+       const res=await fetch(`/api/listing/get?type=rent&limit=6`);
        const data=await res.json()
 
         setrentListings(data)
@@ -67,7 +67,7 @@ useEffect(()=>{
   const fetchsalelistings=async()=>{
     try {
       
-       const res=await fetch(`/api/listing/get?type=sale&limit=4`);
+       const res=await fetch(`/api/listing/get?type=sale&limit=6`);
        const data=await res.json()
 
         setsaleListings(data)
@@ -110,7 +110,7 @@ useEffect(()=>{
           we have a wide range of properties for you to choose from.
 
         </div>
-        <Link className='text-xs sm:text-xl p-2  text-black font-bold hover:underline ' to={'/search'}>
+        <Link className='text-xs border block m-auto border-blue-700 sm:text-xl   text-black font-bold shadow-xl p-2 sm:p-3 hover:bg-gray-900 hover:text-white ' to={'/search'}>
           Let's get started...
 
         </Link>

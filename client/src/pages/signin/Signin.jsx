@@ -54,10 +54,10 @@ try {
   
   
   return (
-    <div className='signin pt-8 sm:pt-5 '>
+    <div className='signin sm:pt-8 flex justify-center items-center  sm:block '>
 
    
-    <div className=' loginform  p-4 max-w-lg mx-auto'>
+    <div className=' loginform outline-none border-black shadow-2xl p-10 sm:p-4 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
       <form  onSubmit={SubmitHandler}  className='flex flex-col gap-4 '>
         <input type="email" placeholder='email' className='border p-3 rounded-lg ' id='email'  onChange={handleChange}/>

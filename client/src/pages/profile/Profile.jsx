@@ -6,7 +6,7 @@ import { app } from '../../../firebase'
 import {updateUserStart,updateUserSuccess,logoutUserFailure,logoutUserSuccess,logoutUserStart,updateUserFailure,deleteUserFailure,deleteUserStart,deleteUserSuccess } from '../../redux/userSlice'
 import {useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { space } from 'postcss/lib/list'
+import '../Home/style.css'
 
 export default function Profile() {
   const dispatch=useDispatch()
@@ -187,9 +187,12 @@ try {
   }
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
+    <div className='profile flex justify-center items-center sm:block'>
+
+   
+    <div className= ' outline-none border-black shadow-2xl p-10 max-w-lg mx-auto'>
     <h1 className='text-3xl text-center font-semibold my-7'>Profile</h1>
-    <form onSubmit={handleSubmit} className=' flex flex-col gap-4'>
+    <form onSubmit={handleSubmit} className=' flex flex-col p-4 gap-4'>
       <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
       <img onClick={()=>fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt='profile'  className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'/>
      <p className='text-sm self-center'>
@@ -215,7 +218,7 @@ try {
 
 <p className='text-red-700 my-3 text-center'>{error? error:""}</p>
 <p className='text-green-700 my-3 text-center'>{updatesuccess? "Updated succesfully":""}</p>
-<button onClick={handleShowListings} className='text-green-700 w-full '>{Showloading?"Loading...":"Show Listings"}</button>
+<button onClick={handleShowListings} className='bg-blue-600 uppercase text-white w-full rounded-lg p-3 '>{Showloading?"Loading...":"Show Listings"}</button>
    <p className='mt-5 text-red-700'>{showListingError?"Error Showing Lists":""}</p>
    {
     userListings &&
@@ -225,26 +228,26 @@ try {
 
 
 {userListings.map((listing)=>{
-      return <div key={listing._id} className="border rounded-lg p-3  gap-4 flex justify-between items-center">
+      return <div key={listing._id} className="border shadow-2xl bg-yellow-500 rounded-lg p-3  gap-4 flex justify-between items-center">
       <Link to={`/listing/${listing._id}`} >
         <img className='w-16 h-16 m-2 object-contain' src={listing.imageUrls[0]} alt='listing cover' />
 
 
       </Link>
       
-      <Link className='text-slate-700 font-semibold flex-1 hover:underline truncate' to={`/listing/${listing._id}`} >
+      <Link className='text-black text-xm sm:text-xl font-bold flex-1 hover:underline truncate' to={`/listing/${listing._id}`} >
         
         <p >{listing.name}</p>
 
 
       </Link>
       <div className="flex flex-col items-center gap-2">
-        <button onClick={()=>handleListingdelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
+        <button onClick={()=>handleListingdelete(listing._id)} className='bg-green-700 p-2 rounded-lg uppercase'>Delete</button>
         
          <span className='text-red-700'> {deleteError?"Error in deleting ":""} </span>
          <span className='text-green-700'> {delteSuccesss?"Succesfully deleted ":""} </span>
         <Link to={`/update-listing/${listing._id}`}>
-        <button className='text-green-700 uppercase'>Edit</button>
+        <button className='bg-green-700 p-2 rounded-lg uppercase'>Edit</button>
         </Link>
        
       </div>
@@ -256,6 +259,7 @@ try {
      </div>}
    
    
+    </div>
     </div>
   )
 }

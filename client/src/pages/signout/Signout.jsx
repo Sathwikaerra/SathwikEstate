@@ -52,8 +52,8 @@ try {
   
   
   return (
-    <div className='signin pt-8 sm:pt-5'>
-    <div className='p-3 max-w-lg mx-auto'>
+    <div className='signin sm:pt-8 flex justify-center items-center  sm:block'>
+    <div className='loginform outline-none border-black shadow-2xl p-10 sm:p-4 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
       <form  onSubmit={SubmitHandler}  className='flex flex-col gap-4 '>
         <input type="text" placeholder='username' className='border p-3 rounded-lg ' id='username'  onChange={handleChange}/>

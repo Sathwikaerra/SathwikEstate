@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {MdLocationOn} from 'react-icons/md'
 
 export default function ListingItem({listing}) {
+    const [rRs,setRrs]=useState(0);
+    const [drs,setDrs]=useState(0)
+
+    useEffect(()=>{
+        setRrs(listing.regularPrice);
+        setDrs(listing.discountPrice)
+
+    },[])
+   
   return (
     <div className='bg-white shadow-md   hover:shadow-lg transition-shadow   overflow-hidden rounded-lg w-[110px] h-[270px] sm:w-[250px] sm:h-[460px]  '>
         <Link to={`/listing/${listing._id}`}>
@@ -24,7 +33,7 @@ export default function ListingItem({listing}) {
             <p className= ' text-xs sm:text-sm text-slate-700 mt-0 sm:mt-2 font-semibold'>
             $
                 {
-                   listing.offer ? listing.discountPrice : listing.regularPrice
+                   listing.offer ? drs.toLocaleString() : rRs.toLocaleString()
                 }
                 {
                     listing.type==='rent' && ' / month'
