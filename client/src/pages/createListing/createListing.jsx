@@ -261,9 +261,9 @@ setSuccess("List Created Succesfully")
       {
         formData.imageUrls.length >0 && formData.imageUrls.map((url,i)=>{
 
-          return <div key={i} className=" flex justify-between p-3 border items-center ">
+          return <div key={i} className=" flex justify-between  shadow-2xl bg-yellow-500 rounded-lg p-3 border items-center ">
             <img src={url} alt="listing image" className='w-30 h-20 rounded-lg object-contain'/>
-            <button type='button' onClick={()=>handleImageDelete(i)} className='p-3 text-red-700 rounded-lg uppercase hover:opacity-90'>Delete</button>
+            <button type='button' onClick={()=>handleImageDelete(i)} className='p-3 bg-red-700 rounded-lg uppercase hover:opacity-90'>Delete</button>
           </div>
            
         })
