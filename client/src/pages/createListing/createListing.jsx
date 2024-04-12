@@ -239,7 +239,7 @@ setSuccess("List Created Succesfully")
       </p>
 
       <div className=' flex gap-4'>
-        <input onChange={(e)=>setFiles(e.target.files)} className='p-3 border border-gray-300 rounded w-full ' type="file"  id="images"  accept='image/*' multiple/>
+        <input onChange={(e)=>setFiles(e.target.files)} className='p-3 border border-black rounded w-full ' type="file"  id="images"  accept='image/*' multiple/>
         <button onClick={handleImageSubmit} type='button' className='p-3 text-white hover:bg-blue-950 bg-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80' >
           {uploading ?`${filePercent}% uploaded`:"Uplaod"
 
